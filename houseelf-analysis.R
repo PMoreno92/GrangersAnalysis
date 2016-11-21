@@ -22,11 +22,16 @@ get_ear_length <- function(seq){
 
 ncodes_1 <- nrow(houseelf_earlength_dna_1)
 DNA_codes_1 <- houseelf_earlength_dna_1[,3]
-DNA_GC_content_1 <- data.frame(gc_content=numeric(length=ncodes_1))
+DNA_GC_content_1 <- data.frame(id=numeric(length=ncodes_1), earlength_class=numeric(length=ncodes_1), gc_content=numeric(length=ncodes_1))
 
 
 for(n in 1:ncodes_1){
+  id <- houseelf_earlength_dna_1[n,1]
+  earlength <- houseelf_earlength_dna_1[n,2]
+  earlength_class <- get_ear_length(earlength)
   DNA <- DNA_codes_1[n]
   gc_result <- getGC_content(DNA)
-  DNA_GC_content_1[n,1] <- gc_result
+  DNA_GC_content_1[n,1] <- id
+  DNA_GC_content_1[n,2] <- earlength_class
+  DNA_GC_content_1[n,3] <- gc_result
 }
