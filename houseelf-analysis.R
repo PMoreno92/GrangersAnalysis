@@ -14,6 +14,12 @@ getGC_content <- function(DNA){
   return(gc_content)
 }
 
+get_ear_length <- function(seq){
+    #Determine the ear length category
+    ear_lengths <- ifelse(seq > 10, "large", "small")
+    return(ear_lengths)
+}
+
 ncodes_1 <- nrow(houseelf_earlength_dna_1)
 DNA_codes_1 <- houseelf_earlength_dna_1[,3]
 DNA_GC_content_1 <- data.frame(gc_content=numeric(length=ncodes_1))
